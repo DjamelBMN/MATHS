@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Découverte des suites numériques</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="initial-message-container">
+        <h1>Activité conçue par D.BENMAKHLOUF</h1>
+        <button onclick="startActivity()">OK pour ouvrir l'activité</button>
+    </div>
+    <div class="container animate-fade-in">
+        <h1 class="title">Découverte des suites numériques</h1>
+
+        <div class="objectives">
+            <h2>Objectifs de l'activité :</h2>
+            <ul>
+                <li>Explorer et comprendre le concept de suite numérique</li>
+                <li>Découvrir la notation indicielle (\(u_n\)) et son utilité</li>
+                <li>Maîtriser les différentes façons de définir une suite</li>
+                <li>Apprendre à raisonner et à formuler des conjectures mathématiques</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>1) Observation et intuition</h2>
+            <div class="sequence-display" id="initialSequence"></div>
+
+            <div class="question">
+                <p>1. Quel est le prochain nombre de la suite ?</p>
+                <input type="number" id="nextNumber" class="input-field" placeholder="Réfléchissez bien...">
+                <button onclick="checkNextNumber()">Vérifier ma réponse</button>
+                <div id="hint1" style="display: none;" class="note-box">
+                    <p>Observez l'écart entre chaque nombre consécutif...</p>
+                </div>
+                <div id="feedback1" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p>2. Expliquez votre raisonnement : comment avez-vous trouvé ce nombre ? <strong>Répondre au crayon à papier sur votre feuille.</strong></p>
+                 <button class="hint-button" onclick="showHint('hint2')">AIDE</button>
+                <textarea id="explanation" class="input-field" rows="3" placeholder="Répondre au crayon à papier sur votre feuille.."></textarea>
+
+                 <div id="hint2" style="display: none;" class="note-box">
+                    <p>Décrivez l'opération réalisée pour passer d'un nombre au suivant.</p>
+                </div>
+                 <div id="feedback2" class="feedback"></div>
+            </div>
+             <div class="question">
+                 <p>3. Que se passerait-il si on voulait trouver le 50e nombre ? <strong>Répondre au crayon à papier sur votre feuille.</strong></p>
+                 <button class="hint-button" onclick="showHint('hint3')">AIDE</button>
+                <textarea id="fiftyNumber" class="input-field" rows="3" placeholder="Répondre au crayon à papier sur votre feuille."></textarea>
+                <div id="hint3" style="display: none;" class="note-box">
+                    <p>Imaginez la longueur du calcul en utilisant votre méthode précédente.</p>
+                </div>
+                <div id="feedbackFiftyNumber" class="feedback"></div>
+            </div>
+
+            <div class="note-box">
+                <h3>À retenir :</h3>
+                <p>Une suite numérique est une succession de nombres qui suivent une règle de construction précise. 
+                   Chaque nombre de la suite est appelé un terme.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2) La notation indicielle</h2>
+            <p>Pour parler des termes d'une suite, on utilise une notation spéciale : la notation indicielle.</p>
+
+            <div class="question">
+                <p>4. Comment note-t-on le 10ème terme de la suite en partant de \(u_1\) ?</p>
+                <input type="text" id="tenthTerm" class="input-field" placeholder="Entrer u et votre indice">
+                <button onclick="checkTenthTerm()">Vérifier</button>
+                <div id="feedback3" class="feedback"></div>
+            </div>
+            <div class="question">
+                <p>5. Comment note-t-on le 10ème terme de la suite en partant de \(u_0\) ?</p>
+                <input type="text" id="tenthTermZero" class="input-field" placeholder="Entrer u et votre indice">
+                <button onclick="checkTenthTermZero()">Vérifier</button>
+                <div id="feedbackTenthTermZero" class="feedback"></div>
+            </div>
+
+             <div class="question">
+                 <p>6. À quoi sert l'indice \(n\) ? <strong>Répondre au crayon à papier sur votre feuille.</strong></p>
+                 <button class="hint-button" onclick="showHint('hint4')">AIDE</button>
+                <textarea id="indexUse" class="input-field" rows="3" placeholder="Répondre au crayon à papier sur votre feuille."></textarea>
+                  <div id="hint4" style="display: none;" class="note-box">
+                    <p>L'indice permet d'identifier un terme dans la suite.</p>
+                </div>
+                <div id="feedbackIndexUse" class="feedback"></div>
+            </div>
+
+            <div class="note-box">
+                <h3>À retenir :</h3>
+                <p>On note généralement \(u_n\) le terme de rang \(n\) d'une suite, où \(n\) est l'indice qui indique la position du terme dans la suite.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3) Définition par récurrence</h2>
+            <div class="formula">
+                \(u_1 = 2\) et \(u_{n+1} = u_n + 3\)
+            </div>
+            <div class="question">
+                <p>7. A votre avis, qu’est ce que \(u_n\) par rapport à \(u_{n+1}\)  ? <strong>Répondre au crayon à papier sur votre feuille.</strong></p>
+                <button class="hint-button" onclick="showHint('hint5')">AIDE</button>
+                 <textarea id="relation" class="input-field" rows="3" placeholder="Répondre au crayon à papier sur votre feuille."></textarea>
+                  <div id="hint5" style="display: none;" class="note-box">
+                    <p>Quel terme vient avant l'autre ?</p>
+                </div>
+                <div id="feedbackRelation" class="feedback"></div>
+            </div>
+            <div class="question">
+                <p>8. Que signifie cette notation ? <strong>Répondre au crayon à papier sur votre feuille.</strong></p>
+                  <button class="hint-button" onclick="showHint('hint6')">AIDE</button>
+                <textarea id="notation" class="input-field" rows="3" placeholder="Répondre au crayon à papier sur votre feuille."></textarea>
+                <div id="hint6" style="display: none;" class="note-box">
+                    <p>Comment calcule-t-on un terme à partir du précédent ?</p>
+                </div>
+                <div id="feedbackNotation" class="feedback"></div>
+            </div>
+            
+
+            <div class="question">
+                <p>9. Complétez le tableau avec les 5 premiers termes de la suite :</p>
+                <table class="table" id="recursionTable">
+                    <tr>
+                        <th>n</th>
+                        <th>\(u_n\)</th>
+                        <th>Calcul détaillé</th>
+                    </tr>
+                    <tr>
+                         <td>1</td>
+                         <td><input type="number" id="u1" class="input-field table-input" ></td>
+                         <td>Premier terme (donné)</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                         <td><input type="number" id="u2" class="input-field table-input" ></td>
+                         <td>
+                           <input type="text" id="calc2" class="input-field table-input" placeholder="u₁ + 3 = ...">
+                            <button class="small-button" onclick="checkRecCalc(2)">✓</button>
+                             <span id="feedback_calc_rec2" class="feedback"></span>
+                         </td>
+                    </tr>
+                     <tr>
+                        <td>3</td>
+                       <td><input type="number" id="u3" class="input-field table-input" ></td>
+                       <td>
+                          <input type="text" id="calc3" class="input-field table-input" placeholder="u₂ + 3 = ...">
+                          <button class="small-button" onclick="checkRecCalc(3)">✓</button>
+                          <span id="feedback_calc_rec3" class="feedback"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                       <td><input type="number" id="u4" class="input-field table-input" ></td>
+                         <td>
+                            <input type="text" id="calc4" class="input-field table-input" placeholder="u₃ + 3 = ...">
+                           <button class="small-button" onclick="checkRecCalc(4)">✓</button>
+                            <span id="feedback_calc_rec4" class="feedback"></span>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>5</td>
+                       <td><input type="number" id="u5" class="input-field table-input" ></td>
+                         <td>
+                            <input type="text" id="calc5" class="input-field table-input" placeholder="u₄ + 3 = ...">
+                           <button class="small-button" onclick="checkRecCalc(5)">✓</button>
+                           <span id="feedback_calc_rec5" class="feedback"></span>
+                        </td>
+                    </tr>
+                </table>
+                 <div id="feedbackRecursionTable" class="feedback"></div>
+                <button onclick="checkRecursionTable()">Vérifier le tableau</button>
+            </div>
+
+
+            <div class="note-box">
+                <h3>À retenir :</h3>
+                <p>Une suite définie par récurrence donne le premier terme et une relation permettant de passer 
+                   d'un terme au suivant.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4) Définition explicite</h2>
+             <p>Observons les premiers termes et cherchons une relation entre 
+                \(n\) et \(u_n\)
+             </p>
+            <div class="question">
+               <table class="table" id="explicitTable">
+                <tr>
+                    <th>n</th>
+                    <th>\(u_n\)</th>
+                    <th>Calcul détaillé</th>
+                </tr>
+                <tr>
+                   <td style="width: 80px;"><span class="indice-input">0</span></td>
+                   <td style="width: 150px;">\(u_0\)= <input type="number" class="small-input" id="val0" value="2" disabled style="width: 60px;"></td>
+                   <td style="width: 200px;">Déjà donnée dans l'énoncé</td>
+               </tr>
+                <tr>
+                    <td style="width: 80px;"><span class="indice-input">1</span></td>
+                    <td style="width: 150px;">\(u_1\)= <input type="number" class="small-input" id="val1" value="5" disabled style="width: 60px;"></td>
+                     <td style="width: 250px;">
+                      <input type="text" class="small-input" id="calc_ex1" placeholder="...?" style="width: 150px;">
+                       <button class="small-button" onclick="checkCalc(1)">✓</button>
+                       <span id="feedback_calc_ex1" class="feedback"></span>
+                     </td>
+                </tr>
+                <tr>
+                  <td style="width: 80px;"> <span class="indice-input">2</span></td>
+                   <td style="width: 150px;">\(u_2\)= <input type="number"  class="small-input" id="val2" value="8" disabled style="width: 60px;"></td>
+                     <td style="width: 250px;">
+                      <input type="text"  class="small-input" id="calc_ex2" placeholder="...?" style="width: 150px;">
+                      <button class="small-button" onclick="checkCalc(2)">✓</button>
+                      <span id="feedback_calc_ex2" class="feedback"></span>
+                   </td>
+                </tr>
+                 <tr>
+                  <td style="width: 80px;"> <span class="indice-input">3</span></td>
+                   <td style="width: 150px;">\(u_3\)= <input type="number"  class="small-input" id="val3" value="11" disabled style="width: 60px;"></td>
+                    <td style="width: 250px;">
+                        <input type="text" class="small-input" id="calc_ex3" placeholder="...?" style="width: 150px;">
+                        <button class="small-button" onclick="checkCalc(3)">✓</button>
+                        <span id="feedback_calc_ex3" class="feedback"></span>
+                    </td>
+                </tr>
+                 <tr>
+                    <td style="width: 80px;"><span class="indice-input">4</span></td>
+                    <td style="width: 150px;">\(u_4\)= <input type="number"  class="small-input" id="val4" value="14" disabled style="width: 60px;"></td>
+                     <td style="width: 250px;">
+                        <input type="text" class="small-input" id="calc_ex4" placeholder="...?" style="width: 150px;">
+                        <button class="small-button" onclick="checkCalc(4)">✓</button>
+                        <span id="feedback_calc_ex4" class="feedback"></span>
+                    </td>
+                </tr>
+             </table>
+            </div>
+
+            <div class="question">
+                <p>10. À partir de vos observations, pouvez-vous trouver une formule qui donne directement le terme \(u_n\) en fonction de \(n\) ?</p>
+                <input type="text" id="explicitFormula" class="input-field" placeholder="Entrer u indice n = la formule que vous avez trouvé">
+                <button onclick="checkExplicitFormula()">Vérifier ma formule</button>
+                 <button class="hint-button" onclick="showHint('hint7')">Indice</button>
+                <div id="hint7" style="display: none;" class="note-box">
+                    <p>Observez comment chaque terme dépend de sa position. \(u_0\) est-il utile ici ? </p>
+                </div>
+                <div id="feedback4" class="feedback"></div>
+            </div>
+            <div class="question">
+                 <p>11. Est-il possible maintenant en utilisant cette formule de déterminer directement \(u_{50}\) ?  <strong>Répondre au crayon à papier sur votre feuille.</strong></p>
+                <button class="hint-button" onclick="showHint('hint8')">AIDE</button>
+                <textarea id="fiftyNumberExplict" class="input-field" rows="3" placeholder="Répondre au crayon à papier sur votre feuille."></textarea>
+                  <div id="hint8" style="display: none;" class="note-box">
+                    <p>Un calcul simple ou un long calcul ?</p>
+                </div>
+                 <div id="feedbackFiftyNumberExplict" class="feedback"></div>
+            </div>
+
+            <div class="note-box">
+                <h3>À retenir :</h3>
+                <p>Une formule explicite permet de calculer directement n'importe quel terme de la suite 
+                   en fonction de son rang \(n\), sans avoir à calculer les termes précédents.</p>
+            </div>
+        </div>
+        <button class="reset-button" onclick="resetActivity()">Réinitialiser l'activité</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
